@@ -3,25 +3,18 @@
 }
 
 :root {
-  --bg: #f4f6f8;
-  --panel: rgba(19, 26, 34, 0.76);
-  --panel-border: rgba(255, 255, 255, 0.12);
-  --ink: #133040;
-  --muted: rgba(20, 36, 46, 0.7);
-  --card: rgba(255, 255, 255, 0.78);
-  --route: #2bb673;
-  --inbound: #2ec4b6;
-  --outbound: #ff9f43;
-  --neutral: #9ad36d;
+  font-family: Inter, "Segoe UI", Arial, sans-serif;
+  color: #141414;
+  background: #fff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
 }
 
-html, body {
-  margin: 0;
-  min-height: 100%;
+html,
+body {
   width: 100%;
-  font-family: Inter, "Segoe UI", sans-serif;
-  background: radial-gradient(circle at top, #edf7ff, #dfe9f3 30%, #cad8e4 100%);
-  color: var(--ink);
+  min-height: 100%;
+  margin: 0;
 }
 
 body {
@@ -29,48 +22,42 @@ body {
 }
 
 .app {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
+  width: min(80%, 80rem);
+  margin: 0 auto;
+  padding: 1.5rem 0 1rem;
 }
 
 .titlebar {
-  position: absolute;
-  left: 1.25rem;
-  top: 1.25rem;
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(19, 26, 34, 0.08);
-  border-radius: 18px;
-  padding: 0.8rem 1.1rem 0.9rem;
-  box-shadow: 0 10px 22px rgba(13, 30, 48, 0.12);
-}
-
-.eyebrow {
-  margin: 0 0 0.25rem;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: rgba(19, 26, 34, 0.65);
+  min-height: 3.25rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 1rem;
 }
 
 .titlebar h1 {
   margin: 0;
-  font-size: clamp(1.5rem, 2vw, 2.3rem);
-  line-height: 1.1;
+  padding-top: 0.1rem;
+  font-size: 1.5rem;
+  line-height: 1.3;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+  white-space: nowrap;
 }
 
 #map {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  width: 100%;
+  height: min(48vh, 37rem);
+  min-height: 20rem;
+  overflow: hidden;
+  background: #d7e8ee;
 }
 
+#map .maplibregl-map,
 #map .maplibregl-canvas-container,
-#map .maplibregl-canvas,
-#map > .mapboxgl-map {
+#map .maplibregl-canvas {
   width: 100% !important;
   height: 100% !important;
 }
@@ -87,133 +74,141 @@ body {
 #map circle.station {
   pointer-events: auto;
   cursor: pointer;
-  stroke: rgba(17, 30, 39, 0.4);
-  stroke-width: 1.1px;
+  stroke: rgba(255, 255, 255, 0.8);
+  stroke-width: 1px;
 }
 
 .floating-panel {
-  position: absolute;
-  right: 1.25rem;
-  top: 1.25rem;
-  z-index: 3;
-  width: min(370px, calc(100vw - 2rem));
-  background: rgba(14, 23, 33, 0.8);
-  color: white;
-  border: 1px solid var(--panel-border);
-  border-radius: 18px;
-  box-shadow: 0 14px 30px rgba(6, 13, 18, 0.18);
-  padding: 0.9rem 1rem 0.8rem;
+  width: min(360px, 52%);
+  padding-top: 0.2rem;
 }
 
 .panel-row {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  margin-bottom: 0.6rem;
+  gap: 0.55rem;
 }
 
 .panel-row label {
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.time-output {
-  min-width: 120px;
-  text-align: right;
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
+  flex: 0 0 auto;
+  font-size: 0.82rem;
+  font-weight: 450;
+  white-space: nowrap;
 }
 
 #time-slider {
   width: 100%;
-  accent-color: #5ec7d8;
+  min-width: 5rem;
+  margin: 0;
+  accent-color: #3478ed;
+  cursor: pointer;
+}
+
+.time-output {
+  min-height: 1.2rem;
+  padding-top: 0.1rem;
+  text-align: right;
+  font-size: 0.72rem;
 }
 
 #any-time {
   display: none;
-  font-size: 0.82rem;
-  opacity: 0.7;
 }
 
 .legend {
-  position: absolute;
-  right: 1.25rem;
-  bottom: 1.25rem;
-  z-index: 3;
   display: flex;
+  justify-content: center;
   align-items: center;
-  gap: 0.9rem;
-  background: rgba(255, 255, 255, 0.75);
-  border: 1px solid rgba(24, 39, 52, 0.08);
-  border-radius: 14px;
-  padding: 0.7rem 0.8rem;
-  box-shadow: 0 10px 22px rgba(13, 30, 48, 0.1);
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--muted);
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  min-height: 2.4rem;
+  padding: 0.45rem 0 0;
+  color: #303030;
+  font-size: 0.78rem;
+}
+
+.legend-title {
+  color: #58606a;
+  font-size: 0.68rem;
 }
 
 .legend-swatch {
-  width: 12px;
-  height: 12px;
+  width: 0.82rem;
+  height: 0.82rem;
+  flex: 0 0 auto;
+  border: 1px solid rgba(20, 20, 20, 0.08);
   border-radius: 50%;
-  border: 1px solid rgba(20, 36, 46, 0.2);
 }
 
 .legend-group {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-}
-
-.legend-group .legend-swatch {
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  gap: 0.42rem;
+  white-space: nowrap;
 }
 
 .map-tooltip {
   position: absolute;
   z-index: 4;
-  background: rgba(17, 28, 38, 0.9);
-  color: white;
   padding: 0.45rem 0.7rem;
-  border-radius: 8px;
+  transform: translate(-50%, calc(-100% - 8px));
+  border-radius: 0.35rem;
+  background: rgba(17, 28, 38, 0.92);
+  color: white;
   font-size: 0.78rem;
   line-height: 1.4;
-  pointer-events: none;
-  transform: translate(-50%, calc(-100% - 8px));
   white-space: nowrap;
+  pointer-events: none;
   opacity: 0;
   transition: opacity 120ms ease;
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
 }
 
 .map-tooltip.visible {
   opacity: 1;
 }
 
-@media (max-width: 720px) {
+.map-status {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  max-width: min(420px, calc(100% - 2rem));
+  margin: 0;
+  padding: 0.85rem 1rem;
+  transform: translate(-50%, -50%);
+  border-radius: 0.5rem;
+  background: rgba(14, 23, 33, 0.88);
+  color: white;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .app {
+    width: calc(100% - 1.5rem);
+    padding-top: 1rem;
+  }
+
   .titlebar {
-    left: 0.9rem;
-    top: 0.9rem;
-    right: 0.9rem;
-    padding: 0.7rem 0.9rem;
+    min-height: auto;
+    flex-direction: column;
+    gap: 0.55rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .titlebar h1 {
+    font-size: 1.35rem;
   }
 
   .floating-panel {
-    right: 0.9rem;
-    left: 0.9rem;
-    top: auto;
-    bottom: 0.9rem;
-    width: auto;
+    width: 100%;
+  }
+
+  #map {
+    height: min(62vh, 37rem);
+    min-height: 21rem;
   }
 
   .legend {
-    right: 0.9rem;
-    bottom: 6.2rem;
+    gap: 0.65rem 1rem;
   }
 }
